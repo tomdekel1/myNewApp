@@ -1,0 +1,131 @@
+@local=http://localhost:4005
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzk3OTI4YjYzYmM3Yjg2OGRiZDY2NDkiLCJiaXoiOmZhbHNlLCJpYXQiOjE3Mzc5ODcyMjh9.yIj1WUszf4pS16MIodzqX95gxQLo7A_DrfuJ7L6QcVM
+@bizToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzk3OTI4YjYzYmM3Yjg2OGRiZDY2NDgiLCJiaXoiOnRydWUsImlhdCI6MTczNzk4NzI5NX0.jMiqEqAnFdn-Bh2cEVWlr9JYA_s4DPAucmEc-9flw4g
+@adminToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzk3OTI4YjYzYmM3Yjg2OGRiZDY2NDciLCJiaXoiOnRydWUsImlhdCI6MTczNzk4NzE4NX0.8DpiVQIlyrFHgVj11FIEHj1KZllcQWYenR_i_CQ3chg
+
+POST {{local}}/api/users/
+Content-Type: application/json
+
+{"name":{"first":"tom","middle":"","last":"dekel"},
+"phone":"1231231233",
+"address":{"state":"asdasd","country":"asd","city":"asd","street":"sasd","houseNumber":"asd","zip":"asd"},
+"image":{"url":"asdasd","alt":"asdads"},
+"email":"tom1@gmail.com",
+"password":"Aa123456",
+"biz":"true"}
+
+###
+POST {{local}}/api/auth/
+Content-Type: application/json
+
+{
+    "email": "biz@biz.com",
+    "password":"Aa123456"
+    }
+
+###
+GET {{local}}/api/users/
+x-auth-token:{{adminToken}}
+
+###
+GET {{local}}/api/users/6797928b63bc7b868dbd6648
+x-auth-token: {{bizToken}}
+
+###
+PUT {{local}}/api/users/6797928b63bc7b868dbd6649
+x-auth-token: {{token}}
+Content-Type: application/json
+
+{
+    "name":{"first":"tommmmmm","middle":"","last":"dekel"},
+"phone":"322222ss33",
+"address":{"state":"asdasd","country":"asd","city":"asd","street":"sasd","houseNumber":"asd","zip":"asd"},
+"image":{"url":"asdasd","alt":"asdads"}
+}
+
+###
+PATCH {{local}}/api/users/6797928b63bc7b868dbd6649
+x-auth-token: {{token}}
+Content-Type: application/json
+
+###
+DELETE {{local}}/api/users/67979b3a5524e1fd0a34e9d4
+x-auth-token: {{token}}
+
+###
+GET {{local}}/api/cards/
+
+###
+GET {{local}}/api/cards/my-cards
+x-auth-token: {{bizToken}}
+
+###
+GET {{local}}/api/cards/6797928b63bc7b868dbd664b
+
+###
+POST {{local}}/api/cards/
+x-auth-token: {{bizToken}}
+Content-Type: application/json
+
+{
+    "title":"hahaha",
+"subtitle":"hahaha",
+"description":"haha",
+"phone":"052333333",
+"email":"tom21@gmail.com",
+"web":"www.store.co.il",
+"image":{
+    "url":"www.gg.com",
+    "alt":"www.gg.com"
+},
+"address":{
+"state":"someplace",
+"country":"someplace",
+"city":"someplace",
+"street":"someplace",
+"houseNumber":"someplace",
+"zip":"someplace"
+}
+}
+
+###
+PUT {{local}}/api/cards/6797a0f3be38cf818b6515e5
+x-auth-token: {{adminToken}}
+Content-Type: application/json
+
+{
+    "title":"h234asdasdas23ha",
+"subtitle":"hahaha",
+"description":"haha",
+"phone":"052333333",
+"web":"www.store.co.il",
+"image":{
+    "url":"www.gg.com",
+    "alt":"www.gg.com"
+},
+"address":{
+"state":"someplace",
+"country":"someplace",
+"city":"someplace",
+"street":"someplace",
+"houseNumber":"someplace",
+"zip":"1313"
+}
+}
+
+###
+PATCH {{local}}/api/cards/6797a0f3be38cf818b6515e5
+x-auth-token: {{token}}
+
+###
+DELETE {{local}}/api/cards/67979d595524e1fd0a34e9df
+x-auth-token:{{adminToken}}
+
+###
+PATCH {{local}}/api/cards/biznumberchange/6797928b63bc7b868dbd664c
+x-auth-token:{{adminToken}}
+Content-Type: application/json
+
+{
+"newBizNumber":"111111111"
+}
