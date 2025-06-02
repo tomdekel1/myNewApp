@@ -1,5 +1,5 @@
 import { Navigate, NavLink, useNavigate } from "react-router-dom";
-import BgVid from "../BgVid";
+// import BgVid from "../BgVid";
 import userService from "../../services/usersServices";
 import { useFormik } from "formik";
 import Joi from 'joi'
@@ -61,7 +61,7 @@ export default function SignIn() {
 
     return (
         <>
-            <BgVid videoName="2" />
+            {/* <BgVid videoName="2" /> */}
             <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                     <img
