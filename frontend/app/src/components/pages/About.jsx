@@ -1,8 +1,8 @@
-import BgVid from '../BgVid'
+// import BgVid from '../BgVid'
 export default function About() {
     return (
         <>
-            <BgVid videoName="1" />
+            {/* <BgVid videoName="1" /> */}
             <div className="sm:flex items-center max-w-screen-xl">
                 <div className="sm:w-1/2 p-10">
                     <div className="image object-center text-center">
