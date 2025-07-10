@@ -1,1 +1,4 @@
-{ "apiURL": "https://mynewapp-backend.onrender.com" }
+{
+  "apiURL": "http://localhost:4060",
+  "apiURL2": "https://mynewapp-backend.onrender.com"
+}

@@ -43,6 +43,7 @@ async function getUserDetails(userId) {
 }
 
 const userService = {
+  refreshToken,
   signUp,
   logIn,
   logOut,

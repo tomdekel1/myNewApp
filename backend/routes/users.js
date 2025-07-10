@@ -38,6 +38,34 @@ router.get("/:id", authMW, validateUserIdMW, async (req, res) => {
 
 //signup new user
 router.post("/", async (req, res) => {
+  const northCities = [
+    "שדה נחמיה",
+    "עמיר",
+    "כפר סאלד",
+    "קריית שמונה",
+    "בית הלל",
+  ];
+  const southCities = ["יסוד המעלה", "חצור", "ראש פינה"];
+  const ramatHagolan = ["מצוק עורבים", "מרום גולן", "אורטל", "אלרום", "שעל"];
+  const northMountainCities = ["יפתח", "דישון", "מרגליות", "רמות נפתלי"];
+
+  function configureDistance() {
+    if (northCities.includes(req.body.city)) {
+      return "north";
+    }
+    if (southCities.includes(req.body.city)) {
+      return "south";
+    }
+    if (ramatHagolan.includes(req.body.city)) {
+      return "Ramat Hagolan";
+    } else {
+      if (northMountainCities.includes(req.body.city)) {
+        return "north Mountain";
+      } else {
+        return "north";
+      }
+    }
+  }
   // validate user input
   const { error } = validateUser(req.body);
   if (error) {
@@ -55,6 +83,7 @@ router.post("/", async (req, res) => {
 
   user = await new User(req.body);
   user.password = await bcrypt.hash(user.password, 12);
+  user.region = configureDistance();
   await user.save();
   const userData = _.pick(user, ["name", "email", "_id"]);
   // response

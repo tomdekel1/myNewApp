@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import { useAuth } from '../contexts/auth.context'
 import ProfileDropDown from './ProfileDropDown'
+import { useEffect, useState } from 'react'
 
 const navigation = [
     { name: 'Home', href: '/' },
@@ -13,21 +14,19 @@ const navigation = [
     { name: 'Sign Up', href: '/signup' },
 ]
 
+
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
 export default function Header(props) {
+
     const { user } = useAuth()
-
-    if (user) {
-        navigation.splice(3, 2)
-    }
-
+    console.log(user, "1")
     return (
-        <div className='min-h-screen'>
-            <Disclosure as="nav" className="bg-gray-800">
-                <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+        <div className=' bg-transparent'>
+            <Disclosure as="nav" className="fixed">
+                <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 ">
                     <div className="relative flex h-16 items-center justify-between">
                         <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                             {/* Mobile menu button*/}
@@ -42,27 +41,93 @@ export default function Header(props) {
                             <div className="flex shrink-0 items-center">
                                 <img
                                     alt="Your Company"
-                                    src="https://tailwindui.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
-                                    className="h-8 w-auto"
+                                    src="https://www.smartcut.co.il/wp-content/uploads/2024/10/doralon-gas-logo.png.webp"
+                                    className="h-10 w-auto"
                                 />
                             </div>
                             <div className="hidden sm:ml-6 sm:block">
                                 <div className="flex space-x-4">
-                                    {navigation.map((item) => (
+                                    <NavLink
+                                        key={"דף הבית"}
+                                        to={"/"}
+                                        className={({ isActive }) => {
+                                            return 'rounded-md px-3 py-2 text-sm font-medium text-gray-300 ' + (
+                                                isActive ? 'bg-gray-900 text-white' : 'hover:bg-gray-700 hover:text-white'
+                                            )
+                                        }}
+                                    >
+                                        {"דף הבית"}
+                                    </NavLink>
+                                    <NavLink
+                                        key={'מי אנחנו'}
+                                        to={"/about"}
+                                        className={({ isActive }) => {
+                                            return 'rounded-md px-3 py-2 text-sm font-medium text-gray-300 ' + (
+                                                isActive ? 'bg-gray-900 text-white' : 'hover:bg-gray-700 hover:text-white'
+                                            )
+                                        }}
+                                    >
+                                        {'מי אנחנו'}
+                                    </NavLink>
+                                    <NavLink
+                                        key={'מוצרים'}
+                                        to={"/feed"}
+                                        className={({ isActive }) => {
+                                            return 'rounded-md px-3 py-2 text-sm font-medium text-gray-300 ' + (
+                                                isActive ? 'bg-gray-900 text-white' : 'hover:bg-gray-700 hover:text-white'
+                                            )
+                                        }}
+                                    >
+                                        {'מוצרים'}
+                                    </NavLink>
+
+                                    {user ? <NavLink
+                                        key={'הזמנות שלי'}
+                                        to={"/my-orders"}
+                                        className={({ isActive }) => {
+                                            return 'rounded-md px-3 py-2 text-sm font-medium text-gray-300 ' + (
+                                                isActive ? 'bg-gray-900 text-white' : 'hover:bg-gray-700 hover:text-white'
+                                            )
+                                        }}
+                                    >
+                                        {'הזמנות שלי'}
+                                    </NavLink> : <>  <NavLink
+                                        key={'התחברות'}
+                                        to={"/signin"}
+                                        className={({ isActive }) => {
+                                            return 'rounded-md px-3 py-2 text-sm font-medium text-gray-300 ' + (
+                                                isActive ? 'bg-gray-900 text-white' : 'hover:bg-gray-700 hover:text-white'
+                                            )
+                                        }}
+                                    >
+                                        {'התחברות'}
+                                    </NavLink>
+
                                         <NavLink
-                                            key={item.name}
-                                            to={item.href}
-                                            aria-current={item.current ? 'page' : undefined}
+                                            key={'הרשמה'}
+                                            to={"/signup"}
                                             className={({ isActive }) => {
-                                                console.log(isActive, item.href)
                                                 return 'rounded-md px-3 py-2 text-sm font-medium text-gray-300 ' + (
                                                     isActive ? 'bg-gray-900 text-white' : 'hover:bg-gray-700 hover:text-white'
                                                 )
                                             }}
                                         >
-                                            {item.name}
+                                            {'הרשמה'}
                                         </NavLink>
-                                    ))}
+
+                                    </>}
+                                    {user && user.isAdmin == true ?
+                                        <NavLink
+                                            key={'ניהול הזמנות'}
+                                            to={"/ordersCenter"}
+                                            className={({ isActive }) => {
+                                                return 'rounded-md px-3 py-2 text-sm font-medium text-gray-300 ' + (
+                                                    isActive ? 'bg-gray-900 text-white' : 'hover:bg-gray-700 hover:text-white'
+                                                )
+                                            }}
+                                        >
+                                            {'ניהול הזמנות'}
+                                        </NavLink> : null}
                                 </div>
                             </div>
                         </div>

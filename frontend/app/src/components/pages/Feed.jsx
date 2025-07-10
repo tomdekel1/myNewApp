@@ -18,6 +18,7 @@ function Feed() {
 
     return (
         <div className="feed-container">
+
             <div className="yt-light-bg dark:yt-dark-bg min-h-screen flex items-center justify-center p-4 flex-wrap gap-10 max-w-2xl m-auto text-amber-50 z-[50]">
 
                 {cards.map(card => (

@@ -8,6 +8,7 @@ import Input from "../Input";
 import { passwordRegex } from '../../regExp';
 import _ from 'lodash'
 import { useAuth } from "../../contexts/auth.context";
+import CitySelect from "../CitySelect";
 
 export default function SignUp() {
     const [serverError, setServerError] = useState("");
@@ -19,7 +20,9 @@ export default function SignUp() {
         validateOnMount: true,
         initialValues: {
             name: "",
-            image: "",
+            city: "קריית שמונה",
+            address: "",
+            phone: "",
             email: "",
             password: "",
             confirmPassword: "",
@@ -28,7 +31,9 @@ export default function SignUp() {
         validate(values) {
             const schema = Joi.object({
                 name: Joi.string().min(2).max(255).required().label("name"),
-                image: Joi.string().min(6).max(1024).required().label("image"),
+                city: Joi.string().min(2).max(1024).required().label("city"),
+                address: Joi.string().min(2).max(1024).required().label("address"),
+                phone: Joi.string().min(9).max(11).required().label("phone"),
                 email: Joi.string().min(6).max(255).required().email({ tlds: { allow: false } }).label("email"),
                 password: Joi.string().min(6).max(255).pattern(passwordRegex)
                     .rule({ message: "password must be at least nine characters long and contain an uppercase letter, a lowercase letter, a number and one of the following characters !@#$%^&*-" })
@@ -74,12 +79,12 @@ export default function SignUp() {
 
     return (
         <section className="bg-blue-300 dark:bg-gray-900 pt-15">
-            <div className="flex flex-col items-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+            <div className="flex flex-col items-center px-6 py-8 mx-auto lg:py-0 min-h-screen">
                 <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
                     <img className="w-8 h-8 mr-2" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg" alt="logo" />
                     Flowbite
                 </a>
-                <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+                <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700 mb-5">
                     <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                         <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                             Create an account
@@ -91,12 +96,20 @@ export default function SignUp() {
                                 placeholder="john doe"
                                 error={form.touched.name && form.errors.name}
                                 type="text" />
-                            <Input {...form.getFieldProps('image')}
-                                label="image"
+                            <CitySelect  {...form.getFieldProps('city')}
+                                label="address" />
+                            <Input {...form.getFieldProps('address')}
+                                label="address"
                                 required
                                 placeholder="john doe"
-                                error={form.touched.image && form.errors.image}
+                                error={form.touched.address && form.errors.address}
                                 type="text" />
+                            <Input {...form.getFieldProps('phone')}
+                                label="phone"
+                                required
+                                placeholder="john doe"
+                                error={form.touched.phone && form.errors.phone}
+                                type="tel" />
                             <Input {...form.getFieldProps('email')}
                                 label="email"
                                 required

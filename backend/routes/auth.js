@@ -7,6 +7,7 @@ const jwt = require("jsonwebtoken");
 const config = require("../config/config");
 
 router.post("/", async (req, res) => {
+  // signin
   // validate user's input
   const { error } = validateUser(req.body);
   if (error) {
@@ -26,7 +27,10 @@ router.post("/", async (req, res) => {
     return;
   }
 
-  const token = jwt.sign({ _id: user._id }, config.jwtKey);
+  const token = jwt.sign(
+    { _id: user._id, isAdmin: user.isAdmin },
+    config.jwtKey
+  );
 
   res.status(201).json({ token });
 });

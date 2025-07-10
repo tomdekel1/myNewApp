@@ -1,5 +1,4 @@
 import { Navigate, NavLink, useNavigate } from "react-router-dom";
-// import BgVid from "../BgVid";
 import userService from "../../services/usersServices";
 import { useFormik } from "formik";
 import Joi from 'joi'
@@ -62,15 +61,15 @@ export default function SignIn() {
     return (
         <>
             {/* <BgVid videoName="2" /> */}
-            <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+            <div className="bg-[url(https://www.chargriller.com/cdn/shop/collections/Dual_Fuel_Grills_PLP_-_Comp_1_-_Option_1.jpg?v=1703178167&width=1070)] bg-cover flex min-h-screen flex-1 flex-col justify-center px-6 py-12 lg:px-8">
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                     <img
                         alt="Your Company"
-                        src="https://tailwindui.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
-                        className="mx-auto h-10 w-auto"
+                        src="https://www.smartcut.co.il/wp-content/uploads/2024/10/doralon-gas-logo.png.webp"
+                        className="mx-auto h-30 w-auto"
                     />
-                    <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
-                        Sign in to your account
+                    <h2 className="mt-10 text-center text-4xl/9 font-bold tracking-tight text-white">
+                        התחבר לחשבונך כדי להזמין גז היום
                     </h2>
                 </div>
 
@@ -104,9 +103,9 @@ export default function SignIn() {
                     </form>
                     {serverError && <div className='text-red-500'>{serverError}</div>}
                     <p className="mt-10 text-center text-sm/6 text-gray-500">
-                        Not a member?{' '}
+                        אין לך חשבון עדיין?{' '}
                         <NavLink to="/signup" className="font-semibold text-indigo-600 hover:text-indigo-500">
-                            sign up
+                            הרשמה
                         </NavLink>
                     </p>
                 </div>
