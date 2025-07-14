@@ -21,7 +21,7 @@ function MyOrdersOrder(props) {
                 </div>
                 <div className="flex justify-between flex-wrap space-x-8 items-start w-full gap-2">
                     <div className="flex flex-col text-center">
-                        <p>:תאריך משלוח</p><span className={["px-3 py-1 rounded-full text-xs font-medium border-2", props.orderStatus == "בתהליכי אישור" ? "bg-yellow-100 text-yellow-800" : "bg-green-100 text-green-800"].filter(Boolean)
+                        <p>:תאריך משלוח</p><span className={["px-3 py-1 rounded-full text-xs font-medium border-2", props.orderStatus == "בתהליכי אישור" ? "bg-yellow-100 text-yellow-800" : props.orderStatus == "בוטל" ? "bg-red-100 text-red-800" : "bg-green-100 text-green-800"].filter(Boolean)
                             .join(" ")}>{props.orderStatus}</span></div>
                     <p className="text-base dark:text-white xl:text-lg leading-6 text-gray-800">01</p>
                     <p className="text-base dark:text-white xl:text-lg font-semibold leading-6 text-gray-800">{props.paid}&#8362;</p>

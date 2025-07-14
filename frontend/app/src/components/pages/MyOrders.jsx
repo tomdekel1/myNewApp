@@ -10,7 +10,7 @@ function MyOrders() {
     useEffect(() => {
         async function getData() {
             const allOrders = await ordersService.getUserOrders(user._id)
-            setOrders(allOrders.data.reverse())
+            setOrders(allOrders.data.sort((a, b) => b.createdAt - a.createdAt))
 
         }
         getData()

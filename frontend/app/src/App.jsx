@@ -10,6 +10,7 @@ import Feed from './components/pages/Feed'
 import OrderGas from './components/pages/OrderGas'
 import OrdersCenter from './components/pages/OrdersCenter'
 import MyOrders from './components/pages/MyOrders'
+import ProductPage from './components/pages/ProductPage'
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
           <Route path="/gasCans" element={<OrderGas />} />
           <Route path="/ordersCenter" element={<OrdersCenter />} />
           <Route path="/my-orders" element={<MyOrders />} />
+          <Route path="/order-product" element={<ProductPage />} />
         </Routes>
       </Header>
     </BrowserRouter>

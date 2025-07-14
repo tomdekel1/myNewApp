@@ -42,9 +42,9 @@ export default function Home() {
                                 <h3 className="text-xl font-bold mb-2 text-red-600">paloma 20 מחמם מים</h3>
                                 <p className="text-gray-600 mb-4">מחמם המים היפני והמפורסם שיהפוך כל מקלחת לחמאם טורקי בלי צורך להדליק את הדוד</p>
                                 <div className="flex justify-between items-center">
-                                    <span className="font-bold text-lg">4000&#8362;</span>
-                                    <button onClick={() => goToOrderPage("paloma20")} className="bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-full transition duration-300 transform hover:scale-110">
-                                        Add to Cart
+                                    <span className="font-bold text-lg">3899 - 4599&#8362;</span>
+                                    <button onClick={() => goToOrderPage("/order-product")} className="bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-full transition duration-300 transform hover:scale-110">
+                                        הזמן עכשיו
                                     </button>
                                 </div>
                             </div>
@@ -57,9 +57,9 @@ export default function Home() {
                                 <h3 className="text-xl font-bold mb-2 text-red-600">בלון גז 48 ק"ג</h3>
                                 <p className="text-gray-600 mb-4">בלון גז גדול לבישול וחימום הבית כמו שרק גז יודע לעשות</p>
                                 <div className="flex justify-between items-center">
-                                    <span className="font-bold text-lg">400-440&#8362;</span>
+                                    <span className="font-bold text-lg">400 - 440&#8362;</span>
                                     <button onClick={() => goToOrderPage("gasCans")} className="bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-full transition duration-300 transform hover:scale-110">
-                                        Add to Cart
+                                        הזמן עכשיו
                                     </button>
                                 </div>
                             </div>
@@ -74,7 +74,7 @@ export default function Home() {
                                 <div className="flex justify-between items-center">
                                     <span className="font-bold text-lg">130-150&#8362;</span>
                                     <button onClick={() => goToOrderPage("gasCans")} className="bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-full transition duration-300 transform hover:scale-110">
-                                        Add to Cart
+                                        הזמן עכשיו
                                     </button>
                                 </div>
                             </div>

@@ -6,12 +6,12 @@ import { Navigate } from 'react-router-dom'
 
 function ProfileDropDown() {
     const { user, logOut, getUserDetails } = useAuth()
-    const [userImage, setUserImage] = useState("https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80")
+    const [userDetails, setUserDetails] = useState()
 
     useEffect(() => {
         const fetchData = async () => {
             const response = await getUserDetails(user._id)
-            setUserImage(response.data.image)
+            setUserDetails(response.data)
         }
         fetchData()
     }
@@ -19,26 +19,26 @@ function ProfileDropDown() {
 
     return (
         <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-            <button
-                type="button"
-                className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden"
-            >
-                <span className="absolute -inset-1.5" />
-                <span className="sr-only">View notifications</span>
-                <BellIcon aria-hidden="true" className="size-6" />
-            </button>
 
             {/* Profile dropdown */}
-            <Menu as="div" className="relative ml-3">
+            <Menu as="div" className=" relative ml-3 cursor-pointer before:absolute before:bg-sky-200 before:bottom-0 before:left-0 before:h-full before:w-full before:origin-bottom before:scale-y-[0.35] hover:before:scale-y-100 before:transition-transform before:ease-in-out before:duration-500">
                 <div>
-                    <MenuButton className="relative flex rounded-full bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden">
+                    <MenuButton className=" relative flex text-sm border">
                         <span className="absolute -inset-1.5" />
                         <span className="sr-only">Open user menu</span>
-                        <img
+
+                        <a className="text-gray-700 hover:text-gray-900 inline-flex items-center">
+                            <svg className="w-5 h-5 mr-2.5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5"
+                                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                            </svg>
+                            {userDetails?.name}
+                        </a>
+                        {/* <img
                             alt=""
                             src={userImage}
                             className="size-8 rounded-full"
-                        />
+                        /> */}
                     </MenuButton>
                 </div>
                 <MenuItems
@@ -67,12 +67,12 @@ function ProfileDropDown() {
                             onClick={logOut}
                             className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
                         >
-                            Sign out
+                            התנתק
                         </a>
                     </MenuItem>
                 </MenuItems>
-            </Menu>
-        </div>
+            </Menu >
+        </div >
     )
 }
 
