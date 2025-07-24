@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react'
 const navigation = [
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
-    { name: 'Feed', href: '/feed' },
+    { name: 'Products', href: '/products' },
     { name: 'Sign In', href: '/signin' },
     { name: 'Sign Up', href: '/signup' },
 ]
@@ -51,7 +51,7 @@ export default function Header(props) {
                                         key={"דף הבית"}
                                         to={"/"}
                                         className={({ isActive }) => {
-                                            return 'rounded-md px-3 py-2 text-sm font-medium text-gray-300 ' + (
+                                            return 'rounded-md px-3 py-2 text-sm font-medium text-white ' + (
                                                 isActive ? 'bg-gray-900 text-white' : 'hover:bg-gray-700 hover:text-white'
                                             )
                                         }}
@@ -62,7 +62,7 @@ export default function Header(props) {
                                         key={'מי אנחנו'}
                                         to={"/about"}
                                         className={({ isActive }) => {
-                                            return 'rounded-md px-3 py-2 text-sm font-medium text-gray-300 ' + (
+                                            return 'rounded-md px-3 py-2 text-sm font-medium text-white ' + (
                                                 isActive ? 'bg-gray-900 text-white' : 'hover:bg-gray-700 hover:text-white'
                                             )
                                         }}
@@ -71,9 +71,9 @@ export default function Header(props) {
                                     </NavLink>
                                     <NavLink
                                         key={'מוצרים'}
-                                        to={"/feed"}
+                                        to={"/products"}
                                         className={({ isActive }) => {
-                                            return 'rounded-md px-3 py-2 text-sm font-medium text-gray-300 ' + (
+                                            return 'rounded-md px-3 py-2 text-sm font-medium text-white ' + (
                                                 isActive ? 'bg-gray-900 text-white' : 'hover:bg-gray-700 hover:text-white'
                                             )
                                         }}
@@ -85,7 +85,7 @@ export default function Header(props) {
                                         key={'הזמנות שלי'}
                                         to={"/my-orders"}
                                         className={({ isActive }) => {
-                                            return 'rounded-md px-3 py-2 text-sm font-medium text-gray-300 ' + (
+                                            return 'rounded-md px-3 py-2 text-sm font-medium text-white ' + (
                                                 isActive ? 'bg-gray-900 text-white' : 'hover:bg-gray-700 hover:text-white'
                                             )
                                         }}
@@ -95,7 +95,7 @@ export default function Header(props) {
                                         key={'התחברות'}
                                         to={"/signin"}
                                         className={({ isActive }) => {
-                                            return 'rounded-md px-3 py-2 text-sm font-medium text-gray-300 ' + (
+                                            return 'rounded-md px-3 py-2 text-sm font-medium text-white ' + (
                                                 isActive ? 'bg-gray-900 text-white' : 'hover:bg-gray-700 hover:text-white'
                                             )
                                         }}
@@ -107,7 +107,7 @@ export default function Header(props) {
                                             key={'הרשמה'}
                                             to={"/signup"}
                                             className={({ isActive }) => {
-                                                return 'rounded-md px-3 py-2 text-sm font-medium text-gray-300 ' + (
+                                                return 'rounded-md px-3 py-2 text-sm font-medium text-white ' + (
                                                     isActive ? 'bg-gray-900 text-white' : 'hover:bg-gray-700 hover:text-white'
                                                 )
                                             }}
@@ -121,7 +121,7 @@ export default function Header(props) {
                                             key={'ניהול הזמנות'}
                                             to={"/ordersCenter"}
                                             className={({ isActive }) => {
-                                                return 'rounded-md px-3 py-2 text-sm font-medium text-gray-300 ' + (
+                                                return 'rounded-md px-3 py-2 text-sm font-medium text-white ' + (
                                                     isActive ? 'bg-gray-900 text-white' : 'hover:bg-gray-700 hover:text-white'
                                                 )
                                             }}
@@ -131,7 +131,7 @@ export default function Header(props) {
 
 
                                     {user ?
-                                        <div className='border'>
+                                        <div>
                                             <ProfileDropDown />
                                         </div>
                                         : null}

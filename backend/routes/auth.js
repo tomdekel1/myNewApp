@@ -11,19 +11,19 @@ router.post("/", async (req, res) => {
   // validate user's input
   const { error } = validateUser(req.body);
   if (error) {
-    res.status(400).send(error.message);
+    res.status(400).json(error.message);
     return;
   }
   //   validate system
-  const user = await User.findOne({ email: req.body.email });
+  const user = await User.findOne({ phone: req.body.phone });
   if (!user) {
-    res.status(400).send("invalid email");
+    res.status(400).json("טלפון או סיסמה שגויים");
     return;
   }
 
   const validPassword = await bcrypt.compare(req.body.password, user.password);
   if (!validPassword) {
-    res.status(400).send("invalid password");
+    res.status(400).send("טלפון או סיסמה שגויים");
     return;
   }
 
@@ -37,7 +37,7 @@ router.post("/", async (req, res) => {
 
 function validateUser(user) {
   const schema = Joi.object({
-    email: Joi.string().min(6).max(255).required(),
+    phone: Joi.string().min(9).max(11).required(),
     password: Joi.string().min(6).max(1024).required(),
   });
   return schema.validate(user);

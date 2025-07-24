@@ -11,17 +11,17 @@ export default function SignIn() {
     const [serverError, setServerError] = useState("")
     const navigate = useNavigate()
 
-    const { user } = useAuth()
+    const { user, login } = useAuth()
 
     const form = useFormik({
         validateOnMount: true,
         initialValues: {
-            email: "",
+            phone: "",
             password: ""
         },
         validate(values) {
             const schema = Joi.object({
-                email: Joi.string().min(6).max(255).required().email({ tlds: { allow: false } }).label("email"),
+                phone: Joi.string().min(9).max(11).required().label("phone"),
                 password: Joi.string().min(6).max(255).pattern(passwordRegex)
                     .rule({ message: "password must be at least nine characters long and contain an uppercase letter, a lowercase letter, a number and one of the following characters !@#$%^&*-" })
                     .required().label("Password"),
@@ -43,11 +43,11 @@ export default function SignIn() {
         async onSubmit(values) {
             console.log(values)
             try {
-                const res = await userService.logIn(values);
+                const res = await login(values);
                 console.log(res)
                 navigate('/')
             } catch (err) {
-                if (err.response?.status === 400) {
+                if (err.response?.status == 400) {
                     setServerError(err.response.data)
                 }
             }
@@ -75,12 +75,12 @@ export default function SignIn() {
 
                 <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
                     <form onSubmit={form.handleSubmit} className="space-y-6">
-                        <Input {...form.getFieldProps('email')}
-                            label="email"
+                        <Input {...form.getFieldProps('phone')}
+                            label="טלפון"
                             required
                             placeholder="john doe"
-                            error={form.touched.email && form.errors.email}
-                            type="email"
+                            error={form.touched.phone && form.errors.phone}
+                            type="tel"
                         />
 
 

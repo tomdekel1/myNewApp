@@ -3,10 +3,13 @@ import MyOrdersOrder from "../MyOrdersOrder"
 import ordersService from "../../services/ordersServices"
 import { useAuth } from "../../contexts/auth.context"
 import ms from "ms"
+import OrderNowBTN from "../OrderNowBTN"
+import { useNavigate } from "react-router-dom"
 
 function MyOrders() {
     const [orders, setOrders] = useState([])
     const { user } = useAuth()
+    const navigate = useNavigate()
     useEffect(() => {
         async function getData() {
             const allOrders = await ordersService.getUserOrders(user._id)
@@ -17,7 +20,7 @@ function MyOrders() {
         console.log(orders);
     }, [])
     return (
-        <div className="container mx-auto px-4 py-8 max-w-7xl pt-20 bg-green-200">
+        <div className="container mx-auto px-4 py-8 max-w-7xl pt-20 min-h-[100vh] bg-green-200">
             {/* Page Header  */}
             <div className="mb-8">
                 <h1 className="text-3xl font-bold text-gray-900 text-right pr-6">היסטוריית הזמנות</h1>
@@ -26,20 +29,28 @@ function MyOrders() {
                     <div className="flex flex-col justify-start items-start w-full space-y-4 md:space-y-6 xl:space-y-8">
                         <div className="flex flex-col justify-start items-start dark:bg-gray-800 px-4 py-4 md:py-6 md:p-6 xl:p-8 w-full">
                             <p className="text-lg md:text-xl dark:text-white font-semibold leading-6 xl:leading-5 text-gray-800 text-right w-[100%]">הזמנות</p>
-                            {orders.map((order, i) => (
-                                <MyOrdersOrder
-                                    key={order._id}
-                                    big={order.big}
-                                    small={order.small}
-                                    service={order.service}
-                                    paid={order.paid}
-                                    notes={order.notes}
-                                    time={order.createdAt}
-                                    city={order.city}
-                                    id={order._id}
-                                    orderStatus={order.orderStatus}
-                                />
-                            ))}
+                            {orders.length == 0 ?
+                                <div className="w-full flex flex-col">
+                                    <div className="text-right text-4xl pt-10 mb-6">...עוד לא ביצעת הזמנות</div>
+                                    <div onClick={() => navigate("/products")} className="ml-auto">
+                                        <OrderNowBTN />
+                                    </div>
+                                </div>
+                                :
+                                orders.map((order, i) => (
+                                    <MyOrdersOrder
+                                        key={order._id}
+                                        big={order.big}
+                                        small={order.small}
+                                        service={order.service}
+                                        paid={order.paid}
+                                        notes={order.notes}
+                                        time={order.createdAt}
+                                        city={order.city}
+                                        id={order._id}
+                                        orderStatus={order.orderStatus}
+                                    />
+                                ))}
 
                         </div>
                     </div>
